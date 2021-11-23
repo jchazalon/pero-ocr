@@ -31,8 +31,8 @@ setup(
         'scikit-image',
         'tensorflow>=2',
         'shapely',
-        'pyamg',
-        'imgaug',
+        #'pyamg',
+        #'imgaug',
         'arabic_reshaper',
     ],
     classifiers=[
