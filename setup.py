@@ -31,6 +31,7 @@ setup(
         'scikit-image',
         'tensorflow>=2',
         'shapely',
+        'torchvision',
         #'pyamg',
         #'imgaug',
         'arabic_reshaper',
