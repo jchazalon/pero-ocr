@@ -61,6 +61,8 @@ class Region:
         print(" " * indent + self.id)
 
     def __eq__(self, other: "Region"):
+        if not isinstance(other, Region):
+            return False
         return self.id == other.id
 
     @property
