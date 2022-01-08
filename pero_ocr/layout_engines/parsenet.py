@@ -53,7 +53,7 @@ class Net(object):
         new_shape_y = int(np.ceil(img.shape[1] / 64) * 64)
         test_img_canvas = np.zeros((1, new_shape_x, new_shape_y, 3), dtype=np.float32)
         test_img_canvas[0, :img.shape[0], :img.shape[1], :] = img
-        print("LAYOUT_CNN_DOWNSAMPLE", downsample, 'INPUT_SHAPE', test_img_canvas.shape)
+        #print("LAYOUT_CNN_DOWNSAMPLE", downsample, 'INPUT_SHAPE', test_img_canvas.shape)
 
         if self.prefix is not None:
             out_map = self.session.run(
