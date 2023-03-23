@@ -25,7 +25,7 @@ classifiers=[
 
 dependencies = [
     "numpy",
-    "opencv-python",
+    "opencv-python-headless",
     "lxml",
     "lmdb",
     "levenshtein",
