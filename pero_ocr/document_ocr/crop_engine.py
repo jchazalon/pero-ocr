@@ -139,7 +139,7 @@ class EngineLineCropper(object):
     def get_blend_mask(self, mapping):
         mask = mapping[:,:,0] > -1
         mask = np.pad(mask, ((self.blend_border,self.blend_border), (self.blend_border,self.blend_border)))
-        mask = ndimage.uniform_filter(mask.astype(np.float), size=2*self.blend_border+1)
+        mask = ndimage.uniform_filter(mask.astype(np.float32), size=2*self.blend_border+1)
         mask = mask[self.blend_border:-self.blend_border, self.blend_border:-self.blend_border]
         mask = 2 * np.clip(mask-0.5, 0, 1)
         return mask[:, :, np.newaxis]

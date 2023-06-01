@@ -183,7 +183,7 @@ class LayoutEngine(object):
                     np.percentile(heights_pred[:, 1], 50)
                 ])
 
-                b_list.append(downsample * pos.astype(np.float))
+                b_list.append(downsample * pos.astype(np.float32))
                 h_list.append([downsample * heights_pred[0], downsample * heights_pred[1]])
 
         # sort lines from LEFT to RIGHT
