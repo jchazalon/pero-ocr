@@ -35,7 +35,7 @@ def refine_baseline(baseline, heights, detection_maps, downsample, crop_engine, 
         line_interpf = np.poly1d(np.polyfit(indices[1], indices[0], 3, w=weights))
 
         line_x_indices = np.arange(0, line_crop.shape[1])
-        line_y_indices = np.round(np.clip(line_interpf(line_x_indices), 0, line_crop.shape[0]-1)).astype(np.int)
+        line_y_indices = np.round(np.clip(line_interpf(line_x_indices), 0, line_crop.shape[0]-1)).astype(np.int32)
         line_x_indices = np.round(line_x_indices)
 
         line_values = line_crop[line_y_indices, line_x_indices]
@@ -53,8 +53,8 @@ def refine_baseline(baseline, heights, detection_maps, downsample, crop_engine, 
             ))))
 
         new_x_indices = np.linspace(min_x, max_x, num_steps)
-        new_y_indices = np.round(line_interpf(new_x_indices)).astype(np.int)
-        new_x_indices = np.round(new_x_indices).astype(np.int)
+        new_y_indices = np.round(line_interpf(new_x_indices)).astype(np.int32)
+        new_x_indices = np.round(new_x_indices).astype(np.int32)
 
         new_y_indices = np.clip(new_y_indices, 0, line_mapping.shape[0] - 1)
         new_x_indices = np.clip(new_x_indices, 0, line_mapping.shape[1] - 1)

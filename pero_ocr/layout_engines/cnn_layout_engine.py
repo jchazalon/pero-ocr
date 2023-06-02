@@ -83,9 +83,9 @@ class LayoutEngine(object):
 
         inds /= ds
         y_inds = np.clip(
-            np.round(inds[:, 1]).astype(np.int), 0, heights_map.shape[0]-1)
+            np.round(inds[:, 1]).astype(np.int32), 0, heights_map.shape[0]-1)
         x_inds = np.clip(
-            np.round(inds[:, 0]).astype(np.int), 0, heights_map.shape[1]-1)
+            np.round(inds[:, 0]).astype(np.int32), 0, heights_map.shape[1]-1)
 
         heights_pred = heights_map[(y_inds, x_inds)]
 
@@ -356,7 +356,7 @@ class LayoutEngine(object):
                     distances[i, j] = penalty
                     distances[j, i] = penalty
 
-            adjacency = (distances < self.paragraph_line_threshold).astype(np.int)
+            adjacency = (distances < self.paragraph_line_threshold).astype(np.int32)
             adjacency = adjacency * (1 - np.eye(adjacency.shape[0]))  # put zeros on diagonal
             graph = csr_matrix(adjacency > 0)
             _, clusters_array = connected_components(

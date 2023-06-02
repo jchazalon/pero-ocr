@@ -115,15 +115,15 @@ class EngineLineCropper(object):
     def reverse_xy_mapping(self, forward_mapping, shape):
         y_mapping = forward_mapping[:,:,1]
         y_mapping = np.clip(cv2.resize(y_mapping, (0,0), fx=4, fy=4, interpolation=cv2.INTER_LINEAR), 0, shape[0]-1)
-        y_mapping = np.round(y_mapping).astype(np.int)
-        ystart = np.round(np.amin(y_mapping)).astype(np.int)
-        ystop = np.round(np.amax(y_mapping)).astype(np.int) + 1
+        y_mapping = np.round(y_mapping).astype(np.int32)
+        ystart = np.round(np.amin(y_mapping)).astype(np.int32)
+        ystop = np.round(np.amax(y_mapping)).astype(np.int32) + 1
 
         x_mapping = forward_mapping[:,:,0]
         x_mapping = np.clip(cv2.resize(x_mapping, (0,0), fx=4, fy=4, interpolation=cv2.INTER_LINEAR), 0, shape[1]-1)
-        x_mapping = np.round(x_mapping).astype(np.int)
-        xstart = np.round(np.amin(x_mapping)).astype(np.int)
-        xstop = np.round(np.amax(x_mapping)).astype(np.int) + 1
+        x_mapping = np.round(x_mapping).astype(np.int32)
+        xstart = np.round(np.amin(x_mapping)).astype(np.int32)
+        xstop = np.round(np.amax(x_mapping)).astype(np.int32) + 1
         y_map = np.tile(np.arange(0, forward_mapping.shape[0]), (forward_mapping.shape[1], 1)).T.astype(np.float32)
         y_map = cv2.resize(y_map, (0,0), fx=4, fy=4, interpolation=cv2.INTER_LINEAR)
         x_map = np.tile(np.arange(0, forward_mapping.shape[1]), (forward_mapping.shape[0], 1)).astype(np.float32)
@@ -179,7 +179,7 @@ def main():
     plt.subplot(132)
     plt.imshow(back_mapped[410:420, 1200:1240])
     plt.subplot(133)
-    plt.imshow(np.concatenate((mapping, mapping[:,:,:1]), axis=2).astype(np.int)[410:420, 1200:1240])
+    plt.imshow(np.concatenate((mapping, mapping[:,:,:1]), axis=2).astype(np.int32)[410:420, 1200:1240])
     plt.show()
 
 

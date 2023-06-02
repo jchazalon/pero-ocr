@@ -393,7 +393,7 @@ def adjust_baselines_to_intensity(baselines, img, tolerance=5):
     new_baselines = []
     for baseline in baselines:
         num_points = baseline[-1][0] - baseline[0][0]
-        baseline_pts = np.round(resample_baselines([baseline], num_points=num_points)[0]).astype(np.int)
+        baseline_pts = np.round(resample_baselines([baseline], num_points=num_points)[0]).astype(np.int32)
         best_score = -np.inf
         for offset in range(-tolerance, tolerance):
             score = np.sum(grad_img[
