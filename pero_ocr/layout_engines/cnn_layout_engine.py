@@ -134,7 +134,7 @@ class LayoutEngine(object):
         b_list = []
         h_list = []
 
-        print('MAP RES:', out_map.shape)
+        #print('MAP RES:', out_map.shape)
         out_map[:, :, 4][out_map[:, :, 4] < 0] = 0
 
         # expand line heights verticaly
