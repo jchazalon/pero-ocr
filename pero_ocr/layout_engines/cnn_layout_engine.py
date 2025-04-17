@@ -187,9 +187,10 @@ class LayoutEngine(object):
                 h_list.append([downsample * heights_pred[0], downsample * heights_pred[1]])
 
         # sort lines from LEFT to RIGHT
-        x_inds = [np.amin(baseline[:, 0]) + 0.0001 * np.random.rand() for baseline in b_list]
-        b_list = [b for _, b in sorted(zip(x_inds, b_list))]
-        h_list = [h for _, h in sorted(zip(x_inds, h_list))]
+        x_inds = np.array([np.amin(baseline[:, 0]) + 0.0001 * np.random.rand() for baseline in b_list])
+        sorted_indices = np.argsort(x_inds)
+        b_list = [b_list[i] for i in sorted_indices]
+        h_list = [h_list[i] for i in sorted_indices]
 
         t_list = [helpers.baseline_to_textline(b, h) for b, h in zip(b_list, h_list)]
 
